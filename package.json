@@ -1,0 +1,22 @@
+{
+  "name": "vuex-easy",
+  "version": "1.0.0",
+  "description": "easy to use vuex",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chendye/vuex-easy.git"
+  },
+  "keywords": [
+    "vuex"
+  ],
+  "author": "Chendye",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chendye/vuex-easy/issues"
+  },
+  "homepage": "https://github.com/chendye/vuex-easy#readme"
+}
