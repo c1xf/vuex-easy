@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/chendye/vuex-easy/issues"
   },
-  "homepage": "https://github.com/chendye/vuex-easy#readme"
+  "homepage": "https://github.com/chendye/vuex-easy#readme",
+  "dependencies": {
+    "vuex": "^3.0.1"
+  }
 }
