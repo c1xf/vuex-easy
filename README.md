@@ -1,8 +1,8 @@
-# Vuex-easy（仅限学习交流）
+# Vuex-easy(开发测试中)（个人项目，自己维护，仅限学习交流）
 
-☕简化Vuex的配置和使用，实现按需调用API，适合SPA后台管理系统。
+☕抱着`Vuex`大腿，简化`Vuex`的配置和使用，利用`getters`特性实现**按需调用API加载数据**，适合SPA后台管理系统。
 
-## 用途
+## 功能
 * 按需加载数据
 * 简化声明方式
 * 简化使用方式
@@ -16,13 +16,15 @@
 
 ## 🔥按需加载数据
 
-SPA系统通常会有一个字典表，给客户自定义；这类数据往往是全局的，Vuex完美解决这类全局共享的问题；但是数据必须初始化好，字典数据多，如果不按需加载，站点启动时就需要请求大量的数据，这，不能忍啊。
+SPA后台管理系统通常会有一个字典表，给客户自定义一些字段；这类数据往往是全局的，`Vuex`完美解决这类全局共享的问题；
 
-`Vuex-easy`提供`fetchState`配置获取数据的`promise`。通过改造封装`getters`实现使用`getters.xxx` 就能按需加载数据。另外`getters`还是原汁原味。
+但是按照官方的demo，数据在使用前就将`state`初始化好，字典数据多而杂，初始化时加载，很可能请求用不着的数据，造成浪费，对于需要查询某一特定配置下的数据，也就更麻烦了。
+
+`Vuex-easy`提供`fetchState`配置获取数据的`promise`。通过改造封装`getters`实现使用`getters.xxx` 就能按需加载数据，使用`getters.xxx(arg)`，来加载特定的数据。
 
 ## 简化声明方式
 
-一般情况下的仓储都比较简单，`mutations`内都是赋值操作`state.xxx = nval`；`vuex-easy`默认创建好。另外默认被声明的还有`getters`
+一般情况下的仓储mutations都比较简单，`mutations`内都是赋值操作`state.xxx = nval`；`vuex-easy`默认创建好。
 
 ```
 vuexEasy({
@@ -39,19 +41,19 @@ vuexEasy({
 
 1. `this.$store.getters.todos`
 2. `this.$store.commit('todos',nval)`
-3. `this.$store.commit('todos')` //重置代替`dispatch`
 
 没有选择困难症😁
 
 ### 抛弃actions
 
-`actions` 的原则是在请求完之后`commit`新数据，在实际应用时，每次修改字典都必须去调用API，拉取新的数据。
-`vuex-easy` 不建议用`actions`来`dispatch`，只会用一个比较怪异的方式 `this.$store.commit('todos')`来重置`state`。数据是否需要获取由当前实例中是否有相应的`getters`控制，这样符合按需加载的要求。`vuex-easy`暂不支持`actions`。
+`actions` 的原则是在请求完之后`commit`新数据，不是完全的按需加载。
+`vuex-easy` 不建议用`actions`来`dispatch`，只会用一个比较怪异但简单的方式 `this.$store.commit('todos')`通过不传入`nval`来重置`state`。数据是否需要获取由当前实例中是否有相应的`getters`控制，这样符合按需加载的要求。`vuex-easy`暂不支持`actions`，若有实际场景再另行斟酌。
 
 ## 原汁原味的Vuex
 
-只是一个`Store`的生产者，在实际应用上根据场景对`Vuex`的应用做了些调整
+`Vuex-easy`是一个`Vuex`的生产者，只是根据场景对`Vuex`的应用做了些调整
 ```
+...
     return store = new Vuex.Store({
         state: states,
         getters,
@@ -72,8 +74,6 @@ vuexEasy({
 
 
 ## 其他
-
-亮点还是在**按需加载**，实现该需求是通过使用`getters`，每次修改`state`都会调用相应的`getters`来实现的。
 
 欢迎提`Issues`交流。
 
